@@ -44,7 +44,7 @@
                 </a>
             </li>
 
-            <li class="side-nav-item  {{ request()->routeIs(['income.index']) ? 'menuitem-active' : '' }}">
+            <li class="side-nav-item {{ request()->routeIs(['income.index']) ? 'menuitem-active' : '' }}">
                 <a href="{{ route('income.index') }}"
                     class="side-nav-link  {{ request()->routeIs(['category.index']) ? 'active' : '' }}">
                     <i class="uil-arrow-to-bottom"></i>
@@ -52,8 +52,9 @@
                 </a>
             </li>
 
-            <li class="side-nav-item">
-                <a href="apps-chat.html" class="side-nav-link">
+            <li class="side-nav-item {{ request()->routeIs(['spending.index']) ? 'menuitem-active' : '' }}">
+                <a href="{{ route('spending.index') }}"
+                    class="side-nav-link {{ request()->routeIs(['spending.index']) ? 'active' : '' }}">
                     <i class="uil-top-arrow-to-top"></i>
                     <span> Spending </span>
                 </a>

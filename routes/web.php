@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
 
 Auth::routes();
 Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
@@ -32,6 +30,12 @@ Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
     Route::post('/income', [App\Http\Controllers\IncomeController::class, 'store'])->name('income.store');
     Route::get('/income/{id}/edit', [App\Http\Controllers\IncomeController::class, 'edit'])->name('income.edit');
     Route::delete('/income/{id}', [App\Http\Controllers\IncomeController::class, 'destroy'])->name('income.destroy');
+
+    Route::get('/spending', [App\Http\Controllers\SpendingController::class, 'index'])->name('spending.index');
+    Route::get('/spending/total', [App\Http\Controllers\SpendingController::class, 'total'])->name('spending.total');
+    Route::post('/spending', [App\Http\Controllers\SpendingController::class, 'store'])->name('spending.store');
+    Route::get('/spending/{id}/edit', [App\Http\Controllers\SpendingController::class, 'edit'])->name('spending.edit');
+    Route::delete('/spending/{id}', [App\Http\Controllers\SpendingController::class, 'destroy'])->name('spending.destroy');
 
 });
 
