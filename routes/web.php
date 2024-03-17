@@ -37,6 +37,7 @@ Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
     Route::get('/spending/{id}/edit', [App\Http\Controllers\SpendingController::class, 'edit'])->name('spending.edit');
     Route::delete('/spending/{id}', [App\Http\Controllers\SpendingController::class, 'destroy'])->name('spending.destroy');
 
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

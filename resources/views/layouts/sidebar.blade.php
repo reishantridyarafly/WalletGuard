@@ -64,19 +64,42 @@
 
             <li class="side-nav-title side-nav-item">Settings</li>
 
-            <li class="side-nav-item">
-                <a href="apps-chat.html" class="side-nav-link">
+            <li class="side-nav-item  {{ request()->routeIs(['profile.index']) ? 'menuitem-active' : '' }}">
+                <a href="{{ route('profile.index') }}"
+                    class="side-nav-link  {{ request()->routeIs(['profile.index']) ? 'active' : '' }}">
                     <i class="uil-user"></i>
-                    <span> My Account </span>
+                    <span> Profile </span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="apps-chat.html" class="side-nav-link">
+                <a href="javascript(0)" class="side-nav-link" id="logout-link">
                     <i class="uil-sign-out-alt"></i>
                     <span> Logout </span>
                 </a>
             </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
             <div class="clearfix"></div>
     </div>
     <!-- Sidebar -left -->
 </div>
+
+<script>
+    document.getElementById('logout-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        swal({
+                title: "Anda yakin ingin logout?",
+                text: "Anda akan keluar dari sesi saat ini.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willLogout) => {
+                if (willLogout) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+    });
+</script>
