@@ -72,34 +72,18 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="javascript(0)" class="side-nav-link" id="logout-link">
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"
+                    class="side-nav-link">
                     <i class="uil-sign-out-alt"></i>
                     <span> Logout </span>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-
             <div class="clearfix"></div>
     </div>
     <!-- Sidebar -left -->
 </div>
-
-<script>
-    document.getElementById('logout-link').addEventListener('click', function(event) {
-        event.preventDefault();
-        swal({
-                title: "Anda yakin ingin logout?",
-                text: "Anda akan keluar dari sesi saat ini.",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willLogout) => {
-                if (willLogout) {
-                    document.getElementById('logout-form').submit();
-                }
-            });
-    });
-</script>
