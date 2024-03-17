@@ -72,18 +72,53 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"
-                    class="side-nav-link">
+                <a href="javascript:void(0);" id="logout-link" class="side-nav-link">
                     <i class="uil-sign-out-alt"></i>
                     <span> Logout </span>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </li>
+            </li>s
             <div class="clearfix"></div>
     </div>
     <!-- Sidebar -left -->
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        $('body').on('click', '#logout-link', function() {
+            Swal.fire({
+                title: 'Logout',
+                text: "Are you sure?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!',
+                cancelButtonText: 'Cancel',
+            }).then((willLogout) => {
+                if (willLogout.isConfirmed) {
+                    logoutUser();
+                }
+            });
+        })
+
+        function logoutUser() {
+            $.ajax({
+                url: "{{ route('logout') }}",
+                type: 'POST',
+                data: $('#logout-form').serialize(),
+                success: function(response) {
+                    console.log("Logout success");
+                    window.location.href = "{{ route('login') }}";
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" +
+                        thrownError);
+                }
+            });
+        }
+    });
+</script>
