@@ -38,6 +38,8 @@ Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
     Route::delete('/spending/{id}', [App\Http\Controllers\SpendingController::class, 'destroy'])->name('spending.destroy');
 
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile/settings/', [App\Http\Controllers\ProfileController::class, 'settingsProfile'])->name('profile.settings');
+    Route::post('/profile/settings/delete-photo', [App\Http\Controllers\ProfileController::class, 'deletePhoto'])->name('profile.deletePhoto');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
