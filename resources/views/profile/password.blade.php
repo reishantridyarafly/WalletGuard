@@ -59,7 +59,7 @@
             e.preventDefault();
             $.ajax({
                 data: $(this).serialize(),
-                url: "{{ route('profile.updatePassword') }}",
+                url: "{{ route('profile.changePassword') }}",
                 type: "POST",
                 dataType: 'json',
                 beforeSend: function() {

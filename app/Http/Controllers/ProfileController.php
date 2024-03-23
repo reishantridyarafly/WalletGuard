@@ -83,7 +83,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function updatePassword(Request $request)
+    public function changePassword(Request $request)
     {
         $validated = Validator::make(
             $request->all(),
@@ -104,6 +104,32 @@ class ProfileController extends Controller
                     'password' => Hash::make($request->password)
                 ]);
                 return response()->json(['success' => 'Password changed successfully']);
+            }
+        }
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'password' => 'required|string|min:8',
+            ],
+        );
+
+        if ($validated->fails()) {
+            return response()->json(['errors' => $validated->errors()]);
+        } else {
+            $user = auth()->user();
+
+            if (!Hash::check($request->password, $user->password)) {
+                return response()->json(['errors' => ['password' => 'Incorrect password. Please try again.']]);
+            } else {
+                User::whereId(auth()->user()->id)->update([
+                    'active_status' => '1'
+                ]);
+
+                return response()->json(['success' => true]);
             }
         }
     }
