@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -79,6 +80,31 @@ class ProfileController extends Controller
             return response()->json(['success' => "Photo successfully deleted", 'name' => $user->name]);
         } else {
             return response()->json(['success' => false, 'error' => 'Photo not found.']);
+        }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'old_password' => 'required',
+                'password' => 'required|min:8|confirmed',
+                'password_confirmation' => 'required',
+            ],
+        );
+
+        if ($validated->fails()) {
+            return response()->json(['errors' => $validated->errors()]);
+        } else {
+            if (!Hash::check($request->old_password, auth()->user()->password)) {
+                return response()->json(['error_password' => 'Old password is wrong!']);
+            } else {
+                User::whereId(auth()->user()->id)->update([
+                    'password' => Hash::make($request->password)
+                ]);
+                return response()->json(['success' => 'Password changed successfully']);
+            }
         }
     }
 }

@@ -40,6 +40,7 @@ Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/settings/', [App\Http\Controllers\ProfileController::class, 'settingsProfile'])->name('profile.settings');
     Route::post('/profile/settings/delete-photo', [App\Http\Controllers\ProfileController::class, 'deletePhoto'])->name('profile.deletePhoto');
+    Route::post('/profile/update/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
