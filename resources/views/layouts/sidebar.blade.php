@@ -60,8 +60,6 @@
                 </a>
             </li>
 
-
-
             <li class="side-nav-title side-nav-item">Settings</li>
 
             <li class="side-nav-item  {{ request()->routeIs(['profile.index']) ? 'menuitem-active' : '' }}">
@@ -79,7 +77,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </li>s
+            </li>
             <div class="clearfix"></div>
     </div>
     <!-- Sidebar -left -->
