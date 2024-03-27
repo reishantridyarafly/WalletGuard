@@ -60,6 +60,16 @@
                 </a>
             </li>
 
+            @if (auth()->user()->type == 'Administrator')
+                <li class="side-nav-item {{ request()->routeIs(['users.index']) ? 'menuitem-active' : '' }}">
+                    <a href="{{ route('users.index') }}"
+                        class="side-nav-link {{ request()->routeIs(['users.index']) ? 'active' : '' }}">
+                        <i class="uil-users-alt"></i>
+                        <span> Users </span>
+                    </a>
+                </li>
+            @endif
+
             <li class="side-nav-title side-nav-item">Settings</li>
 
             <li class="side-nav-item  {{ request()->routeIs(['profile.index']) ? 'menuitem-active' : '' }}">

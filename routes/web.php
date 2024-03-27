@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
 
 Auth::routes();
-Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
+Route::middleware(['auth', 'user-access:Administrator,User'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
@@ -44,4 +44,12 @@ Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
     Route::post('/profile/delete/account', [App\Http\Controllers\ProfileController::class, 'deleteAccount'])->name('profile.deleteAccount');
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'user-access:Administrator'])->group(function () {
+    Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
+    Route::post('/users', [App\Http\Controllers\UsersController::class, 'store'])->name('users.store');
+    Route::post('/users/updateActiveStatus', [App\Http\Controllers\UsersController::class, 'updateActiveStatus'])->name('users.updateActiveStatus');
+    Route::get('/users/{id}/edit', [App\Http\Controllers\UsersController::class, 'edit'])->name('users.edit');
+    Route::delete('/users/{id}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('users.destroy');
+});
+
+
