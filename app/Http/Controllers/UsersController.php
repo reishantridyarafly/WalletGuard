@@ -47,7 +47,7 @@ class UsersController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|unique:users,email,' . $id,
-                'phone_number' => 'required|unique:users,phone_number,' . $id,
+                'phone_number' => 'required|min:11|max:13|unique:users,phone_number,' . $id,
                 'type' => 'required',
             ]
         );

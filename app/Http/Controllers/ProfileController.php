@@ -24,7 +24,7 @@ class ProfileController extends Controller
                 'name' => 'required|string',
                 'email' => 'required|string|unique:users,email,' . $id,
                 'photo' => 'image|mimes:jpg,png,jpeg,webp,svg|file|max:5120',
-                'phone_number' => 'required|unique:users,phone_number,' . $id,
+                'phone_number' => 'required|min:11|max:13|unique:users,phone_number,' . $id,
             ],
         );
 
