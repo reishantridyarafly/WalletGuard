@@ -13,9 +13,9 @@ class IncomeController extends Controller
     public function index()
     {
         $category = Category::orderBy('name', 'asc')->get();
-        $totalIncome = Income::sum('income');
+        $totalIncome = Income::where('user_id', auth()->user()->id)->sum('income');
         if (request()->ajax()) {
-            $income = Income::with('category')->orderBy('created_at', 'asc')->get();
+            $income = Income::with('category')->where('user_id', auth()->user()->id)->orderBy('created_at', 'asc')->get();
             return DataTables::of($income)
                 ->addIndexColumn()
                 ->addColumn('category', function ($data) {

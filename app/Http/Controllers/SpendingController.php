@@ -13,9 +13,9 @@ class SpendingController extends Controller
     public function index()
     {
         $category = Category::orderBy('name', 'asc')->get();
-        $totalSpending = Spending::sum('spending');
+        $totalSpending = Spending::where('user_id', auth()->user()->id)->sum('spending');
         if (request()->ajax()) {
-            $spending = Spending::with('category')->orderBy('created_at', 'asc')->get();
+            $spending = Spending::with('category')->where('user_id', auth()->user()->id)->orderBy('created_at', 'asc')->get();
             return DataTables::of($spending)
                 ->addIndexColumn()
                 ->addColumn('category', function ($data) {
