@@ -39,6 +39,7 @@ class Income extends Model
      */
     protected $fillable = [
         'income',
+        'user_id',
         'category_id',
         'description',
     ];

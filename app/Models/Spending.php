@@ -39,6 +39,7 @@ class Spending extends Model
      */
     protected $fillable = [
         'spending',
+        'user_id',
         'category_id',
         'description',
     ];

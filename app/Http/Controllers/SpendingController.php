@@ -60,6 +60,7 @@ class SpendingController extends Controller
                 'id' => $id
             ], [
                 'spending' => $spending,
+                'user_id' => auth()->user()->id,
                 'category_id' => $request->category,
                 'description' => $request->description,
             ]);
