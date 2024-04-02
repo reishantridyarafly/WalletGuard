@@ -69,13 +69,6 @@
                                 document.write(new Date().getFullYear())
                             </script> © Wallet Guard
                         </div>
-                        <div class="col-md-6">
-                            <div class="text-md-end footer-links d-none d-md-block">
-                                <a href="javascript: void(0);">About</a>
-                                <a href="javascript: void(0);">Support</a>
-                                <a href="javascript: void(0);">Contact Us</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </footer>
@@ -105,12 +98,8 @@
         <div class="rightbar-content h-100" data-simplebar="">
 
             <div class="p-3">
-                <div class="alert alert-warning" role="alert">
-                    <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
-                </div>
-
                 <!-- Settings -->
-                <h5 class="mt-3">Color Scheme</h5>
+                <h5>Color Scheme</h5>
                 <hr class="mt-1">
 
                 <div class="form-check form-switch mb-1">

@@ -38,6 +38,13 @@
                 <div class="col-xxl-4 col-lg-5">
                     <div class="card">
 
+                        <!-- Logo -->
+                        <div class="card-header pt-2 pb-2 text-center bg-primary">
+                            <a href="index.html">
+                                <span><img src="{{ asset("assets") }}/images/logo.png" alt="" height="70"></span>
+                            </a>
+                        </div>
+
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">

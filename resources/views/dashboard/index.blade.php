@@ -207,9 +207,6 @@
     </script>
     <!-- end demo js-->
 
-
-
-
     <!-- demo:js -->
     <script>
         dataColors = $("#simple-pie").data("colors");
